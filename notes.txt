@@ -1,0 +1,39 @@
+Minikube
+minikube start                    # Démarrer le cluster
+minikube stop                     # Stopper le cluster
+minikube status                   # Vérifier le statut du cluster
+minikube delete                   # Supprimer complètement Minikube
+
+minikube service nom-service               # Ouvre le service dans le navigateur
+
+K8s
+kubectl config use-context minikube    # Utiliser le contexte Minikube
+kubectl get nodes                      # Voir les nœuds du cluster
+kubectl get pods                       # Voir les pods en cours
+kubectl get svc                        # Voir les services
+kubectl get all                        # Voir tout (pods, svc, deployments, etc.)
+kubectl delete pod <nom>               # Supprimer un pod spécifique
+kubectl delete deployment <nom>        # Supprimer un déploiement
+kubectl describe pod <nom>             # Détails d’un pod
+kubectl logs <nom>                     # Voir les logs d’un pod
+
+kubectl apply -f fichier.yaml         # Appliquer un fichier de config
+kubectl delete -f fichier.yaml        # Supprimer tout ce que contient le fichier
+kubectl rollout restart deployment <nom>  # Redémarrer un déploiement proprement
+
+kubectl create namespace argocd
+
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+kubectl port-forward svc/argocd-server -n argocd 8080:443
+# Accès à https://localhost:8080
+
+kubectl exec -it <nom_du_pod> -- /bin/sh
+kubectl exec -it $(kubectl get pods -l app=nginx-custom -o name | cut -d/ -f2) -- ls /usr/share/nginx/html
+
+Docker
+docker build --no-cache -t nom-image .     # Build image Docker sans cache
+minikube image load nom-image              # Charger une image dans Minikube
+docker images                              # Voir les images Docker locales
+docker image prune -a                      # Supprimer les images non utilisées
+
