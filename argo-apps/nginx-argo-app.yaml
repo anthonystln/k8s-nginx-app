@@ -7,7 +7,7 @@ spec:
   source:
     repoURL: https://github.com/anthonystln/k8s-nginx-app
     targetRevision: main
-    path: k8s/nginx
+    path: nginx
   destination:
     server: https://kubernetes.default.svc
     namespace: default
